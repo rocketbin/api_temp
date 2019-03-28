@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateColorsTable extends Migration
+class CreateScenesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateColorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('colors', function (Blueprint $table) {
+        Schema::create('scenes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->text('colors');
-            $table->string('agency')->nullable();
-            $table->integer('active');
-            $table->string('type');
+            $table->string('path');
+            $table->string('reftype');
+            $table->text('init');
+            $table->text('data');
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreateColorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('colors');
+        Schema::dropIfExists('scenes');
     }
 }

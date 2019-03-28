@@ -12,11 +12,20 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::post('test','TestController@index');
+Route::post('attempt','AuthController@login');
 Route::get('colors','ColorController@index');
-Route::group(['prefix' => 'uploads'], function () {
-	Route::post('image', 'FileController@store');
+
+Route::group(['prefix' => 'system'], function () {
+  Route::post('firstUser', 'SystemController@createFirstUser')->middleware('core.user');
+  Route::group(['prefix' => 'synch'], function () {
+    Route::post('colors', 'SynchController@synchColors');
+  });
 });
+
+Route::group(['prefix' => 'uploads'], function () {
+  Route::post('image', 'FileController@store');
+});
+
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
