@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateScenesTable extends Migration
+class CreateStoragesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateScenesTable extends Migration
      */
     public function up()
     {
-        Schema::create('scenes', function (Blueprint $table) {
+        Schema::create('storages', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('user_id')->index();
-            $table->string('path');
-            $table->string('reftype');
-            $table->text('init');
-            $table->text('data');
-            $table->integer('status')->default(2);
+            $table->integer('storageable_id');
+            $table->string('storageable_type');
+            $table->integer('user_id')->index();
+            $table->text('temp')->nullable();
+            $table->text('path')->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ class CreateScenesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('scenes');
+        Schema::dropIfExists('storages');
     }
 }
