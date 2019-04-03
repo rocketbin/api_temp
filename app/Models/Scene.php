@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Validator;
 
 use App\Models\User;
+use App\Models\HP\Scene as HPScene;
+use App\Models\HP\Js as JSScene;
 class Scene extends Model
 {
     protected $guarded = [];
@@ -25,5 +27,9 @@ class Scene extends Model
 
     public function user () {
       return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function JSScene () {
+      return $this->belongsTo(JSScene::class, 'hp_id');
     }
 }

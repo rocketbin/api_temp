@@ -5,6 +5,7 @@ use Auth;
 use App\Models\Scene;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\HP\Js as JSScene;
 
 class SceneController extends Controller
 {
@@ -39,6 +40,7 @@ class SceneController extends Controller
         Scene::validate($request);
         return Scene::create([
             'user_id'   => Auth::user()->id,
+            'name'      => $request->name,
             'init'      => $request->init,
             'path'      => $request->path,
             'data'      => $request->data,
@@ -100,7 +102,14 @@ class SceneController extends Controller
      */
     public function approve(Scene $scene)
     {
-        $scene->update(['status' => 1]);
+        $js = JSScene::create([
+            'timestamp' => date("Y-m-d H:i:s"),
+            'filename' => $scene->name,
+            'reftype' => $scene->reftype,
+            'data' => $scene->data,
+        ]);
+
+        $scene->update(['status' => 1, 'hp_id' => $js->js_id]);
         return Scene::find($scene->id)->load('user');
     }
 
@@ -113,6 +122,7 @@ class SceneController extends Controller
     public function deactivate(Scene $scene)
     {
         $scene->update(['status' => 2]);
+        $scene->JSScene()->delete();
         return Scene::find($scene->id)->load('user');
     }
 }

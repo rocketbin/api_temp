@@ -16,6 +16,8 @@ class CreateScenesTable extends Migration
         Schema::create('scenes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->index();
+            $table->bigInteger('hp_id')->nullable()->index();
+            $table->string('name')->nullable();
             $table->string('path')->nullable();
             $table->string('reftype');
             $table->text('init');
