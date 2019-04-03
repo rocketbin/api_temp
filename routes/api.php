@@ -26,6 +26,16 @@ Route::group(['prefix' => 'uploads'], function () {
   Route::post('image', 'FileController@store');
 });
 
+Route::group(['prefix' => 'scenes'], function () {
+  Route::get('/', 'SceneController@index');
+  Route::group(['prefix' => '{scene}'], function () {
+    Route::get('/','SceneController@show');
+    Route::post('approve','SceneController@approve');
+    Route::post('deactivate','SceneController@deactivate');
+  });
+  Route::put('save', 'SceneController@store');
+});
+
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
 // });

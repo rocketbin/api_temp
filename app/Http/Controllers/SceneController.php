@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Auth;
 use App\Models\Scene;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class SceneController extends Controller
 {
@@ -14,7 +15,7 @@ class SceneController extends Controller
      */
     public function index()
     {
-        //
+        return Scene::get();
     }
 
     /**
@@ -35,7 +36,15 @@ class SceneController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Scene::validate($request);
+        return Scene::create([
+            'user_id'   => Auth::user()->id,
+            'init'      => $request->init,
+            'path'      => $request->path,
+            'data'      => $request->data,
+            'reftype'   => 'raw'
+        ]);
+        
     }
 
     /**
@@ -46,7 +55,7 @@ class SceneController extends Controller
      */
     public function show(Scene $scene)
     {
-        //
+        return $scene->load('user');
     }
 
     /**
@@ -81,5 +90,29 @@ class SceneController extends Controller
     public function destroy(Scene $scene)
     {
         //
+    }
+
+    /**
+     * Approve the scene and push to [hp instance]
+     *
+     * @param  \App\Models\Scene  $scene
+     * @return \Illuminate\Http\Response
+     */
+    public function approve(Scene $scene)
+    {
+        $scene->update(['status' => 1]);
+        return Scene::find($scene->id)->load('user');
+    }
+
+    /**
+     * Approve the scene and push to [hp instance]
+     *
+     * @param  \App\Models\Scene  $scene
+     * @return \Illuminate\Http\Response
+     */
+    public function deactivate(Scene $scene)
+    {
+        $scene->update(['status' => 2]);
+        return Scene::find($scene->id)->load('user');
     }
 }

@@ -454,6 +454,7 @@ class ComposerStaticInit18b02bf2c853fb093c99ee2dd65a9d70
         'App\\Http\\Controllers\\FileController' => __DIR__ . '/../..' . '/app/Http/Controllers/FileController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\SceneController' => __DIR__ . '/../..' . '/app/Http/Controllers/SceneController.php',
+        'App\\Http\\Controllers\\StorageController' => __DIR__ . '/../..' . '/app/Http/Controllers/StorageController.php',
         'App\\Http\\Controllers\\SynchController' => __DIR__ . '/../..' . '/app/Http/Controllers/SynchController.php',
         'App\\Http\\Controllers\\SystemController' => __DIR__ . '/../..' . '/app/Http/Controllers/SystemController.php',
         'App\\Http\\Controllers\\TestController' => __DIR__ . '/../..' . '/app/Http/Controllers/TestController.php',

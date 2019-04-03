@@ -16,10 +16,10 @@ class CreateScenesTable extends Migration
         Schema::create('scenes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->index();
-            $table->string('path');
+            $table->string('path')->nullable();
             $table->string('reftype');
             $table->text('init');
-            $table->text('data');
+            $table->longText('data');
             $table->integer('status')->default(2);
             $table->timestamps();
         });

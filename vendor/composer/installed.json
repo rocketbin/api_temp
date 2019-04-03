@@ -5258,17 +5258,17 @@
     },
     {
         "name": "tymon/jwt-auth",
-        "version": "dev-develop",
-        "version_normalized": "dev-develop",
+        "version": "1.0.0-rc.4.1",
+        "version_normalized": "1.0.0.0-RC4.1",
         "source": {
             "type": "git",
             "url": "https://github.com/tymondesigns/jwt-auth.git",
-            "reference": "f72b8eb"
+            "reference": "63698d304554e5d0bc3eb481cc260a9fc900e151"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/tymondesigns/jwt-auth/zipball/f72b8eb",
-            "reference": "f72b8eb",
+            "url": "https://api.github.com/repos/tymondesigns/jwt-auth/zipball/63698d304554e5d0bc3eb481cc260a9fc900e151",
+            "reference": "63698d304554e5d0bc3eb481cc260a9fc900e151",
             "shasum": ""
         },
         "require": {
