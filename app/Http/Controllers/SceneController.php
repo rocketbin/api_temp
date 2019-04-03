@@ -112,6 +112,7 @@ class SceneController extends Controller
         $scene->update(['status' => 1, 'hp_id' => $js->js_id]);
         return Scene::find($scene->id)->load('user');
     }
+    
 
     /**
      * Approve the scene and push to [hp instance]
