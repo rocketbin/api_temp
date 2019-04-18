@@ -23,11 +23,24 @@ Route::group(['prefix' => 'system'], function () {
 });
 
 Route::group(['prefix' => 'uploads'], function () {
+  Route::group(['prefix' => 'raw'], function () {
+    Route::post('read', 'JsController@readFile');
+  });
   Route::post('image', 'FileController@store');
+
+});
+
+Route::group(['prefix' => 'config'], function () {
+  Route::get('types', 'ConfigController@index');
+});
+
+Route::group(['prefix' => 'js'], function () {
+  Route::post('store', 'JsController@store');
+  Route::post('{js}/update', 'JsController@update');
 });
 
 Route::group(['prefix' => 'scenes'], function () {
-  Route::get('/', 'SceneController@index');
+  Route::get('/', 'SceneController@JsScenes');
   Route::group(['prefix' => '{scene}'], function () {
     Route::get('/','SceneController@show');
     Route::post('approve','SceneController@approve');
