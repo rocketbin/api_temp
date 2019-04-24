@@ -81,6 +81,11 @@ class JsController extends Controller
             'data' => $request->data,
             'config' => json_decode(json_encode($request->config))
         ]);
+        if(empty($js->raw)) {
+            $js->update([
+                'raw' => $request->data
+            ]);
+        }
         return $js;
     }
 
