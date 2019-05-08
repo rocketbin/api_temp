@@ -24,9 +24,15 @@ class SceneController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function JsScenes()
+    public function JsScenes(Request $request)
     {
-        return JSScene::paginate(15);
+        if(!empty($request->search)) {
+            return JSScene::where('filename', 'like' , '%' . $request->search . '%')
+                ->orderBy('timestamp', 'desc')
+                ->paginate(15);
+        } else {
+            return JSScene::orderBy('timestamp', 'desc')->paginate(15);
+        }
     }
 
     /**
