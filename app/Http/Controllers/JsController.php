@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Models\HP\JS;
+use App\Models\HP\Js;
 
 class JsController extends Controller
 {
@@ -36,7 +36,7 @@ class JsController extends Controller
      */
     public function store(Request $request)
     {
-        return JS::create([
+        return Js::create([
             'filename' => $request->filename,
             'reftype' => $request->reftype,
             'data' => $request->data,
@@ -75,7 +75,7 @@ class JsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(JS $js, Request $request)
+    public function update(Js $js, Request $request)
     {
         $js->update([
             'data' => $request->data,
